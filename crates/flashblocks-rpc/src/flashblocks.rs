@@ -27,6 +27,7 @@ impl FlashblocksOverlay {
     }
 
     pub fn start(&mut self) -> eyre::Result<()> {
+        println!("FlashblocksOverlay::start!!!: {:?}", self.url);
         let url = self.url.clone();
         let (sender, mut receiver) = mpsc::channel(100);
 
@@ -44,6 +45,21 @@ impl FlashblocksOverlay {
                             debug!("Received message: {:?}", msg);
 
                             match msg {
+                                Ok(Message::Text(text)) => match try_decode_message(text.as_bytes()) {
+                                    Ok(payload) => {
+                                        info!("Received payload: {:?}", payload);
+
+                                        let _ = sender
+                                            .send(InternalMessage::NewPayload(payload))
+                                            .await
+                                            .map_err(|e| {
+                                                error!("failed to send payload to channel: {}", e);
+                                            });
+                                    }
+                                    Err(e) => {
+                                        error!("failed to parse fb message: {}", e);
+                                    }
+                                },
                                 Ok(Message::Binary(bytes)) => match try_decode_message(&bytes) {
                                     Ok(payload) => {
                                         info!("Received payload: {:?}", payload);
@@ -87,6 +103,7 @@ impl FlashblocksOverlay {
 
         let cache_cloned = self.cache.clone();
         tokio::spawn(async move {
+            println!("FlashblocksOverlay::spawn!!!");
             while let Some(message) = receiver.recv().await {
                 match message {
                     InternalMessage::NewPayload(payload) => {

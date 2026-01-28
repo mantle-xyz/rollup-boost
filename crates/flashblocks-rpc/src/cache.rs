@@ -148,6 +148,7 @@ impl FlashblocksCacheInner {
     }
 
     pub fn process_payload(&mut self, payload: FlashblocksPayloadV1) -> eyre::Result<()> {
+        println!("FlashblocksCacheInner::process_payload!!!: {:?}", payload);
         // Convert metadata with error handling
         let metadata: Metadata = match serde_json::from_value(payload.metadata.clone()) {
             Ok(m) => m,
@@ -187,13 +188,20 @@ impl FlashblocksCacheInner {
                 nonce_map.insert(from, nonce + 1);
             }
 
-            // update the receipts
+            // First check if receipt already exists in receipts_cache
+            if self.receipts_cache.contains_key(&tx.tx_hash()) {
+                // Receipt already cached, skip
+                all_receipts.push(None);
+                continue;
+            }
+
+            // If not in cache, get from metadata
             let receipt = metadata
                 .receipts
                 .get(&tx.tx_hash().to_string())
-                .expect("Receipt should exist");
+                .expect("Receipt should exist in metadata");
 
-            all_receipts.push(receipt.clone());
+            all_receipts.push(Some(receipt.clone()));
         }
         for (address, nonce) in nonce_map.iter() {
             self.nonce_cache.insert(*address, *nonce);
@@ -216,6 +224,10 @@ impl FlashblocksCacheInner {
                 let receipt = all_receipts
                     .get(indx)
                     .expect("Receipt should exist for transaction");
+                if receipt.is_none() {
+                    continue;
+                }
+                let receipt = receipt.as_ref().unwrap();
                 let meta = TransactionMeta {
                     tx_hash: tx.tx_hash(),
                     index: indx as u64,

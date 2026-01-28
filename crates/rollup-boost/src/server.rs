@@ -560,12 +560,42 @@ impl<T: EngineApiExt> EngineApiServer for RollupBoostServer<T> {
             } else {
                 // If the tx pool is enabled, forward the fcu
                 // to both the builder and the default l2 client
+
+                // Debug logging for FCU payload attributes before sending to builder
+                if let Some(ref attrs) = payload_attributes {
+                    info!(
+                        message = "FCU to builder - payload attributes",
+                        head_block_hash = %fork_choice_state.head_block_hash,
+                        timestamp = attrs.payload_attributes.timestamp,
+                        prev_randao = %attrs.payload_attributes.prev_randao,
+                        suggested_fee_recipient = %attrs.payload_attributes.suggested_fee_recipient,
+                        parent_beacon_block_root = ?attrs.payload_attributes.parent_beacon_block_root,
+                        withdrawals_len = attrs.payload_attributes.withdrawals.as_ref().map(|w| w.len()).unwrap_or(0),
+                        transactions_len = attrs.transactions.as_ref().map(|t| t.len()).unwrap_or(0),
+                        no_tx_pool = ?attrs.no_tx_pool,
+                        gas_limit = ?attrs.gas_limit,
+                        eip_1559_params = ?attrs.eip_1559_params,
+                        min_base_fee = ?attrs.min_base_fee,
+                    );
+                }
+
                 let builder_fut = self
                     .builder_client
                     .fork_choice_updated_v3(fork_choice_state, payload_attributes.clone());
 
                 let (l2_result, builder_result) = tokio::join!(l2_fut, builder_fut);
                 let l2_response = l2_result?;
+
+                // Debug logging for payload_id comparison between L2 and builder
+                let l2_payload_id = l2_response.payload_id;
+                let builder_payload_id = builder_result.as_ref().ok().and_then(|r| r.payload_id);
+                info!(
+                    message = "FCU response - payload_id comparison",
+                    head_block_hash = %fork_choice_state.head_block_hash,
+                    l2_payload_id = ?l2_payload_id,
+                    builder_payload_id = ?builder_payload_id,
+                    payload_id_match = l2_payload_id == builder_payload_id,
+                );
 
                 if let Some(payload_id) = l2_response.payload_id {
                     info!(

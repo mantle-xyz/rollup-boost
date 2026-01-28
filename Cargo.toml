@@ -40,10 +40,93 @@ alloy-rpc-types = "1.0.41"
 alloy-genesis = "1.0.41"
 alloy-rpc-client = "1.0.41"
 alloy-provider = "1.0.41"
-op-alloy-network = "0.22.0"
-op-alloy-rpc-types-engine = "0.22.0"
-op-alloy-consensus = "0.22.0"
-op-alloy-rpc-types = "0.22.0"
+op-alloy-rpc-types = { git = "https://github.com/mantle-xyz/op-alloy", tag = "v2.1.0", default-features = false }
+op-alloy-rpc-types-engine = { git = "https://github.com/mantle-xyz/op-alloy", tag = "v2.1.0", default-features = false }
+op-alloy-rpc-jsonrpsee = { git = "https://github.com/mantle-xyz/op-alloy", tag = "v2.1.0", default-features = false }
+op-alloy-network = { git = "https://github.com/mantle-xyz/op-alloy", tag = "v2.1.0", default-features = false }
+op-alloy-consensus = { git = "https://github.com/mantle-xyz/op-alloy", tag = "v2.1.0", default-features = false }
 tokio-tungstenite = { version = "0.26.2", features = ["native-tls"] }
 testcontainers = "0.23"
 testcontainers-modules = { version = "0.11", features = ["redis"] }
+
+[patch."https://github.com/paradigmxyz/reth"]
+reth = { path = "/Users/sh002/workspace/reth/bin/reth" }
+reth-basic-payload-builder = { path = "/Users/sh002/workspace/reth/crates/payload/basic" }
+reth-chain-state = { path = "/Users/sh002/workspace/reth/crates/chain-state" }
+reth-chainspec = { path = "/Users/sh002/workspace/reth/crates/chainspec" }
+reth-cli = { path = "/Users/sh002/workspace/reth/crates/cli/cli" }
+reth-cli-commands = { path = "/Users/sh002/workspace/reth/crates/cli/commands" }
+reth-cli-util = { path = "/Users/sh002/workspace/reth/crates/cli/util" }
+reth-db = { path = "/Users/sh002/workspace/reth/crates/storage/db" }
+reth-db-common = { path = "/Users/sh002/workspace/reth/crates/storage/db-common" }
+reth-errors = { path = "/Users/sh002/workspace/reth/crates/errors" }
+reth-evm = { path = "/Users/sh002/workspace/reth/crates/evm/evm" }
+reth-evm-ethereum = { path = "/Users/sh002/workspace/reth/crates/ethereum/evm" }
+reth-execution-errors = { path = "/Users/sh002/workspace/reth/crates/evm/execution-errors" }
+reth-execution-types = { path = "/Users/sh002/workspace/reth/crates/evm/execution-types" }
+reth-exex = { path = "/Users/sh002/workspace/reth/crates/exex/exex" }
+reth-ipc = { path = "/Users/sh002/workspace/reth/crates/rpc/ipc" }
+reth-metrics = { path = "/Users/sh002/workspace/reth/crates/metrics" }
+reth-network-peers = { path = "/Users/sh002/workspace/reth/crates/net/peers" }
+reth-node-api = { path = "/Users/sh002/workspace/reth/crates/node/api" }
+reth-node-builder = { path = "/Users/sh002/workspace/reth/crates/node/builder" }
+reth-node-core = { path = "/Users/sh002/workspace/reth/crates/node/core" }
+reth-node-ethereum = { path = "/Users/sh002/workspace/reth/crates/ethereum/node" }
+reth-optimism-chainspec = { path = "/Users/sh002/workspace/reth/crates/optimism/chainspec" }
+reth-optimism-cli = { path = "/Users/sh002/workspace/reth/crates/optimism/cli" }
+reth-optimism-consensus = { path = "/Users/sh002/workspace/reth/crates/optimism/consensus" }
+reth-optimism-evm = { path = "/Users/sh002/workspace/reth/crates/optimism/evm" }
+reth-optimism-forks = { path = "/Users/sh002/workspace/reth/crates/optimism/hardforks" }
+reth-optimism-node = { path = "/Users/sh002/workspace/reth/crates/optimism/node" }
+reth-optimism-payload-builder = { path = "/Users/sh002/workspace/reth/crates/optimism/payload" }
+reth-optimism-primitives = { path = "/Users/sh002/workspace/reth/crates/optimism/primitives" }
+reth-optimism-rpc = { path = "/Users/sh002/workspace/reth/crates/optimism/rpc" }
+reth-optimism-txpool = { path = "/Users/sh002/workspace/reth/crates/optimism/txpool" }
+reth-payload-builder = { path = "/Users/sh002/workspace/reth/crates/payload/builder" }
+reth-payload-builder-primitives = { path = "/Users/sh002/workspace/reth/crates/payload/builder-primitives" }
+reth-payload-primitives = { path = "/Users/sh002/workspace/reth/crates/payload/primitives" }
+reth-payload-util = { path = "/Users/sh002/workspace/reth/crates/payload/util" }
+reth-primitives = { path = "/Users/sh002/workspace/reth/crates/primitives" }
+reth-primitives-traits = { path = "/Users/sh002/workspace/reth/crates/primitives-traits" }
+reth-provider = { path = "/Users/sh002/workspace/reth/crates/storage/provider" }
+reth-revm = { path = "/Users/sh002/workspace/reth/crates/revm" }
+reth-rpc-api = { path = "/Users/sh002/workspace/reth/crates/rpc/rpc-api" }
+reth-rpc-engine-api = { path = "/Users/sh002/workspace/reth/crates/rpc/rpc-engine-api" }
+reth-rpc-eth-types = { path = "/Users/sh002/workspace/reth/crates/rpc/rpc-eth-types" }
+reth-rpc-layer = { path = "/Users/sh002/workspace/reth/crates/rpc/rpc-layer" }
+reth-rpc = { path = "/Users/sh002/workspace/reth/crates/rpc/rpc" }
+reth-rpc-builder = { path = "/Users/sh002/workspace/reth/crates/rpc/rpc-builder" }
+reth-rpc-convert = { path = "/Users/sh002/workspace/reth/crates/rpc/rpc-convert" }
+reth-rpc-eth-api = { path = "/Users/sh002/workspace/reth/crates/rpc/rpc-eth-api" }
+reth-rpc-server-types = { path = "/Users/sh002/workspace/reth/crates/rpc/rpc-server-types" }
+reth-codecs-derive = { path = "/Users/sh002/workspace/reth/crates/storage/codecs/derive" }
+reth-config = { path = "/Users/sh002/workspace/reth/crates/config" }
+reth-consensus = { path = "/Users/sh002/workspace/reth/crates/consensus/consensus" }
+reth-consensus-common = { path = "/Users/sh002/workspace/reth/crates/consensus/common" }
+reth-e2e-test-utils = { path = "/Users/sh002/workspace/reth/crates/e2e-test-utils" }
+reth-engine-local = { path = "/Users/sh002/workspace/reth/crates/engine/local" }
+reth-engine-primitives = { path = "/Users/sh002/workspace/reth/crates/engine/primitives" }
+reth-eth-wire-types = { path = "/Users/sh002/workspace/reth/crates/net/eth-wire-types" }
+reth-ethereum-engine-primitives = { path = "/Users/sh002/workspace/reth/crates/ethereum/engine-primitives" }
+reth-ethereum-forks = { path = "/Users/sh002/workspace/reth/crates/ethereum/hardforks" }
+reth-ethereum-primitives = { path = "/Users/sh002/workspace/reth/crates/ethereum/primitives" }
+reth-net-banlist = { path = "/Users/sh002/workspace/reth/crates/net/banlist" }
+reth-network-api = { path = "/Users/sh002/workspace/reth/crates/net/network-api" }
+reth-network-p2p = { path = "/Users/sh002/workspace/reth/crates/net/p2p" }
+reth-network-types = { path = "/Users/sh002/workspace/reth/crates/net/network-types" }
+reth-prune-types = { path = "/Users/sh002/workspace/reth/crates/prune/types" }
+reth-stages-types = { path = "/Users/sh002/workspace/reth/crates/stages/types" }
+reth-static-file-types = { path = "/Users/sh002/workspace/reth/crates/static-file/types" }
+reth-storage-errors = { path = "/Users/sh002/workspace/reth/crates/storage/errors" }
+reth-tokio-util = { path = "/Users/sh002/workspace/reth/crates/tokio-util" }
+reth-tracing = { path = "/Users/sh002/workspace/reth/crates/tracing" }
+reth-trie-common = { path = "/Users/sh002/workspace/reth/crates/trie/common" }
+reth-zstd-compressors = { path = "/Users/sh002/workspace/reth/crates/storage/zstd-compressors" }
+reth-storage-api = { path = "/Users/sh002/workspace/reth/crates/storage/storage-api" }
+reth-tasks = { path = "/Users/sh002/workspace/reth/crates/tasks" }
+reth-testing-utils = { path = "/Users/sh002/workspace/reth/testing/testing-utils" }
+reth-tracing-otlp = { path = "/Users/sh002/workspace/reth/crates/tracing-otlp" }
+reth-transaction-pool = { path = "/Users/sh002/workspace/reth/crates/transaction-pool" }
+reth-trie = { path = "/Users/sh002/workspace/reth/crates/trie/trie" }
+reth-trie-db = { path = "/Users/sh002/workspace/reth/crates/trie/db" }
+reth-trie-parallel = { path = "/Users/sh002/workspace/reth/crates/trie/parallel" }
