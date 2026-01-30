@@ -99,6 +99,7 @@ reth-rpc-builder = { git = "https://github.com/mantle-xyz/reth", branch = "mantl
 reth-rpc-convert = { git = "https://github.com/mantle-xyz/reth", branch = "mantle-arsia" }
 reth-rpc-eth-api = { git = "https://github.com/mantle-xyz/reth", branch = "mantle-arsia" }
 reth-rpc-server-types = { git = "https://github.com/mantle-xyz/reth", branch = "mantle-arsia" }
+reth-codecs = { git = "https://github.com/mantle-xyz/reth", branch = "mantle-arsia" }
 reth-codecs-derive = { git = "https://github.com/mantle-xyz/reth", branch = "mantle-arsia" }
 reth-config = { git = "https://github.com/mantle-xyz/reth", branch = "mantle-arsia" }
 reth-consensus = { git = "https://github.com/mantle-xyz/reth", branch = "mantle-arsia" }
