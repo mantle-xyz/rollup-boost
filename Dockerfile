@@ -65,7 +65,7 @@ WORKDIR /app
 
 ARG SERVICE_NAME
 # Copy binary with its proper service name
-COPY --from=builder /tmp/final_binary /usr/local/bin/${SERVICE_NAME}
+COPY --from=builder /tmp/final_binary /usr/local/bin/rollup-boost
 # Also copy as a fixed entrypoint name
 COPY --from=builder /tmp/final_binary /usr/local/bin/entrypoint
 
