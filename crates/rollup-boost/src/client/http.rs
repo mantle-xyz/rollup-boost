@@ -36,8 +36,7 @@ pub struct HttpClient {
 impl HttpClient {
     pub fn new(url: Uri, secret: JwtSecret, target: PayloadSource, timeout: u64) -> Self {
         let connector = hyper_rustls::HttpsConnectorBuilder::new()
-            .with_native_roots()
-            .expect("no native root CA certificates found")
+            .with_webpki_roots()
             .https_or_http()
             .enable_http1()
             .enable_http2()
