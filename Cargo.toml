@@ -49,7 +49,7 @@ op-alloy-rpc-types-engine = "0.24.0"
 op-alloy-consensus = "0.24.0"
 op-alloy-rpc-types = "0.24.0"
 tokio-tungstenite = { version = "0.26.2", features = ["native-tls"] }
-testcontainers = "0.23"
+testcontainers = "0.27"
 jsonrpsee = "0.26.0"
-testcontainers-modules = { version = "0.11", features = ["redis"] }
+testcontainers-modules = { version = "0.15", features = ["redis"] }
 redis-test = "1"
